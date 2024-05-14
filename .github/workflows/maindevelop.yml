@@ -1,15 +1,40 @@
-name: Java CI with Maven
+name: Java CI with Maven, JaCoCo, and Coveralls
+
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up JDK 1.8
       uses: actions/setup-java@v3
       with:
           distribution: 'temurin'
           java-version: 8.0.332+9
           cache: 'maven'
-    - name: Build with Maven
-      run: mvn -B install --file pom.xml
+
+    - name: Build with Maven and JaCoCo
+      run: |
+        mvn -B install jacoco:report coveralls:report --file pom.xml
+        echo "::set-output name=build-result::$(mvn -B install --file pom.xml)"
+
+    - name: Extract JaCoCo and Coveralls reports
+      run: |
+        mvn jacoco:report -DdataFile=target/jacoco.exec
+        mvn jacoco:report-aggregate -DdataFile=target/jacoco.exec
+        mvn coveralls:report
+
+    - name: Update README
+      if: always()
+      run: |
+        echo "Build Result: ${{ steps.build.outputs.build-result }}" > README.md
+        echo "JaCoCo Code Coverage Report: [Coverage](./target/site/jacoco/index.html)" >> README.md
+        echo "Coveralls Report: ![Coverage](https://coveralls.io/repos/github/yourusername/yourrepository/badge.svg)" >> README.md
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Update README with build result, JaCoCo and Coveralls coverage reports" || echo "No changes to commit"
+        git push
