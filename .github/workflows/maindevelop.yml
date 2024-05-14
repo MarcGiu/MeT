@@ -1,37 +1,15 @@
 name: Java CI with Maven
-
-on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
-      - develop
-
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
+    - uses: actions/checkout@v3
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v3
       with:
-        java-version: '11'
-        distribution: 'adopt'
-        cache: 'gradle'
-
-    - name: Cache Maven dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-
+          distribution: 'temurin'
+          java-version: 8.0.332+9
+          cache: 'maven'
     - name: Build with Maven
-      run: mvn -B verify
+      run: mvn -B install --file pom.xml
