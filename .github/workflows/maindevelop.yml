@@ -26,4 +26,4 @@ jobs:
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v2.3.0
     - name: Update README.md with coverage
-      run: echo "![Coverage](https://coveralls.io/jobs/142366104)" > README.md
+      run: echo "[![Coverage Status](https://coveralls.io/repos/github/MarcGiu/MeT/badge.svg)](https://coveralls.io/github/MarcGiu/MeT)" > README.md
