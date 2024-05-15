@@ -14,7 +14,8 @@ jobs:
     - name: Build with Maven
       run: mvn -B install --file pom.xml
     - name: Update README.md with build status
-      run: echo "![Build Status](https://github.com/MarcGiu/MeT/workflows/Build/badge.svg)" > README.md
+      run: echo "![Build Status](https://github.com/MarcGiu/MeT/workflows/maindevelop/badge.svg)" > README.md
+    
       if: always()
     - name: Upload code coverage report
       uses: actions/upload-artifact@v2
