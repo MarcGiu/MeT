@@ -28,9 +28,9 @@ jobs:
     - name: Update README
       if: always()
       run: |
-        echo [![Coverage Status](https://coveralls.io/repos/github/MarcGiu/MeT/badge.svg?branch=main)](https://coveralls.io/github/MarcGiu/MeT?branch=main)
+        echo "[![Coverage Status](https://coveralls.io/repos/github/MarcGiu/MeT/badge.svg?branch=main)](https://coveralls.io/github/MarcGiu/MeT?branch=main)" >> README.md
         echo "" >> README.md
-        echo [![Java CI with Maven](https://github.com/MarcGiu/MeT/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/MarcGiu/MeT/actions/workflows/maven.yml)
+        echo "[![Java CI with Maven](https://github.com/MarcGiu/MeT/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/MarcGiu/MeT/actions/workflows/maven.yml)" >> README.md
         echo "" >> README.md
         echo "Build Result: ${{ steps.build.outputs.build-result }}" > README.md
         echo "" >> README.md
