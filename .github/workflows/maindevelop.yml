@@ -20,8 +20,10 @@ jobs:
     - name: Upload code coverage report
       uses: actions/upload-artifact@v2
       with:
-        name: jacoco-report
-        path: target/site/jacoco
+          generate-branches-badge: true
+          jacoco-csv-file: target/site/jacoco/jacoco.csv
+          badges-directory: .github/badges
+
       if: always()
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v2.3.0
