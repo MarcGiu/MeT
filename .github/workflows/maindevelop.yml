@@ -33,6 +33,13 @@ jobs:
         echo "Build Result: ${{ steps.build.outputs.build-result }}" > README.md
         echo "Coveralls Report: ![Coverage](https://coveralls.io/repos/github/MarcGiu/MeT/badge.svg)" >> README.md
         git add README.md
+        echo "Build Result: ${{ steps.build.outputs.build-result }}" > README.md
+        echo "Coveralls Report: ![Coverage](https://coveralls.io/repos/github/MarcGiu/MeT/badge.svg)" >> README.md
+        git config --local user.email "giulia.marcon.6@studenti.unipd.it"
+        git config --local user.name "MarcGiu"
+        git add README.md
+        git commit -m "Update README with build result and Coveralls coverage report" || echo "No changes to commit"
+        git push
         git commit -m "Update README with build result and Coveralls coverage report" || echo "No changes to commit"
         git push
       
