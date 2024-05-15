@@ -31,7 +31,6 @@ jobs:
         echo "Build Result: ${{ steps.build.outputs.build-result }}" > README.md
         echo "" >> README.md
         echo "Coveralls Report:" >> README.md
-        echo "![Coverage](https://coveralls.io/repos/github/MarcGiu/MeT/badge.svg)" >> README.md
         echo "[![Coverage Status](https://coveralls.io/repos/github/MarcGiu/MeT/badge.svg?branch=main)](https://coveralls.io/github/MarcGiu/MeT?branch=main)" >> README.md
         echo "" >> README.md
         echo "[![Java CI with Maven](https://github.com/MarcGiu/MeT/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/MarcGiu/MeT/actions/workflows/maven.yml)" >> README.md
